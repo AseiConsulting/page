@@ -3,463 +3,211 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NovaPos Restaurant · Punto de venta para restaurantes</title>
-<meta name="description" content="NovaPos es el punto de venta para restaurantes, cafeterías y bares: mesas, comandas a cocina, inventario, pedidos por QR y reportes. Contrata solo los módulos que necesitas.">
-<link rel="icon" type="image/png" href="novapos-favicon.png">
+<title>NovaPOS Restaurant · Punto de venta para restaurantes</title>
+<meta name="description" content="NovaPOS es el punto de venta para restaurantes, cafeterías y bares: mesas, comandas a cocina, caja, inventario, pedidos por QR y reportes. Contrata solo los módulos que necesitas.">
+<meta name="theme-color" content="#1c1b1a">
+<meta property="og:title" content="NovaPOS Restaurant · Punto de venta para restaurantes">
+<meta property="og:description" content="Mesas, comandas, caja, inventario y reportes en un solo sistema.">
+<meta property="og:image" content="assets/img/novapos-video-poster.jpg">
+<link rel="icon" type="image/png" href="assets/img/novapos-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #faf8f4;
-  --bg-alt: #f2eee6;
-  --surface: #ffffff;
-  --ink: #1c1b1a;
-  --ink-soft: #57534e;
-  --line: #e4ded3;
-  --accent: #f28c28;
-  --accent-ink: #b85e0c;
-  --accent-bg: #fdebd8;
-  --dark: #1c1b1a;
-  --dark-ink: #f5f2ec;
-  --ok: #2f9e5b;
-  --radius: 16px;
-  --shadow: 0 1px 2px rgba(28,27,26,.06), 0 8px 24px rgba(28,27,26,.06);
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
-h1, h2, h3 { line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
-h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
-h3 { font-size: 19px; font-weight: 700; }
-p { margin: 0; }
-.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
-.lead { color: var(--ink-soft); font-size: 19px; }
-section { padding: 88px 0; }
-.section-head { max-width: 680px; margin-bottom: 48px; display: grid; gap: 14px; }
-.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
-
-/* Botones */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 16px;
-  text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s, background .15s;
-}
-.btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--accent); color: #1c1b1a; }
-.btn-primary:hover { background: #f59a3e; }
-.btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
-.btn-ghost:hover { background: var(--ink); color: var(--bg); }
-
-/* Encabezado */
-header.top {
-  position: sticky; top: 0; z-index: 20; background: rgba(250,248,244,.9);
-  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
-}
-.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
-.top .logo img { height: 38px; width: auto; }
-.top nav { display: flex; gap: 28px; align-items: center; }
-.top nav a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--ink-soft); }
-.top nav a:hover { color: var(--ink); }
-.top .btn { padding: 10px 18px; font-size: 15px; }
-.menu-btn { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--ink); }
-
-/* Hero */
-.hero { padding: 72px 0 96px; }
-.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
-.hero h1 { font-size: clamp(38px, 5.6vw, 62px); font-weight: 800; letter-spacing: -0.035em; }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.hero .copy { display: grid; gap: 24px; }
-.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-.checks { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; padding: 0; margin: 0; color: var(--ink-soft); font-size: 15px; font-weight: 600; }
-.checks li::before { content: "✓"; color: var(--ok); font-weight: 800; margin-right: 8px; }
-
-/* Maqueta del sistema */
-.mock { background: var(--dark); border-radius: 22px; padding: 18px; box-shadow: 0 30px 60px rgba(28,27,26,.25); color: var(--dark-ink); }
-.mock-bar { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #a8a29e; margin-bottom: 14px; }
-.mock-bar b { color: var(--dark-ink); font-size: 15px; }
-.dots { display: flex; gap: 6px; } .dots i { width: 10px; height: 10px; border-radius: 50%; background: #44403c; display: block; }
-.mock-body { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
-.tables { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.tbl { border-radius: 12px; padding: 12px 10px; font-size: 12px; background: #2a2826; border: 1px solid #3a3734; }
-.tbl strong { display: block; font-size: 18px; color: var(--dark-ink); }
-.tbl.busy { background: rgba(242,140,40,.16); border-color: var(--accent); }
-.tbl.busy span { color: #fbbf75; }
-.tbl.free span { color: #86efac; }
-.tbl.res { border-style: dashed; } .tbl.res span { color: #a8a29e; }
-.ticket { background: var(--surface); color: var(--ink); border-radius: 12px; padding: 14px; font-size: 13px; display: grid; gap: 8px; }
-.ticket .t-head { display: flex; justify-content: space-between; font-weight: 700; border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
-.ticket .row { display: flex; justify-content: space-between; }
-.ticket .row small { display: block; color: var(--ink-soft); font-size: 11px; }
-.ticket .total { border-top: 1px dashed var(--line); padding-top: 8px; font-weight: 800; display: flex; justify-content: space-between; font-size: 15px; }
-.pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--accent-bg); color: var(--accent-ink); }
-.kds { margin-top: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.kds div { background: #2a2826; border-radius: 10px; padding: 10px; font-size: 12px; border-top: 3px solid #57534e; }
-.kds div.prep { border-top-color: var(--accent); } .kds div.ok { border-top-color: var(--ok); }
-.kds b { display: block; color: var(--dark-ink); }
-
-/* Tipos de negocio */
-.biz { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 28px 0; }
-.biz .wrap { display: flex; flex-wrap: wrap; gap: 14px 40px; justify-content: center; align-items: center; color: var(--ink-soft); font-weight: 700; }
-.biz span { display: inline-flex; gap: 10px; align-items: center; }
-.biz svg { color: var(--accent); }
-
-/* Video */
-.video-sec { padding-bottom: 0; }
-.video-box { max-width: 960px; margin: 0 auto; background: var(--dark); border-radius: 22px; padding: 10px; box-shadow: 0 30px 60px rgba(28,27,26,.22); }
-.video-box video { width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: #000; }
-
-/* Beneficios */
-.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; gap: 12px; align-content: start; box-shadow: var(--shadow); }
-.card p { color: var(--ink-soft); font-size: 16px; }
-.icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-bg); color: var(--accent-ink); display: grid; place-items: center; }
-
-/* Módulos */
-#modulos { background: var(--bg-alt); }
-.modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-.mod { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; gap: 8px; align-content: start; }
-.mod header { display: flex; gap: 12px; align-items: center; }
-.mod .icon { width: 40px; height: 40px; border-radius: 10px; flex: none; }
-.mod p { color: var(--ink-soft); font-size: 15px; }
-.mod ul { margin: 4px 0 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; }
-.mod.core { background: var(--dark); color: var(--dark-ink); border-color: var(--dark); }
-.mod.core p { color: #d6d3d1; }
-.mod.core .icon { background: var(--accent); color: var(--dark); }
-
-/* Destacados */
-.feature { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.feature + .feature { margin-top: 88px; }
-.feature.flip .f-copy { order: 2; }
-.f-copy { display: grid; gap: 18px; }
-.f-copy ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.f-copy li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; color: var(--ink-soft); }
-.f-copy li::before { content: "✓"; color: var(--ok); font-weight: 800; }
-.f-copy li b { color: var(--ink); }
-.f-visual { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; box-shadow: var(--shadow); }
-.printer { background: var(--bg-alt); border-radius: 14px; padding: 22px; font-family: "Courier New", monospace; font-size: 14px; line-height: 1.5; max-width: 280px; margin: 0 auto; border: 1px solid var(--line); }
-.printer hr { border: 0; border-top: 1px dashed #a8a29e; margin: 8px 0; }
-.qr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.qr-grid div { border: 1px solid var(--line); border-radius: 14px; padding: 18px 12px; text-align: center; display: grid; gap: 8px; justify-items: center; font-weight: 700; font-size: 14px; }
-.qr-grid small { font-weight: 500; color: var(--ink-soft); font-size: 12px; }
-.qr-grid svg { color: var(--ink); }
-
-/* Planes */
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-.plan { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 32px 28px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; }
-.plan.featured { border: 2px solid var(--accent); box-shadow: 0 20px 40px rgba(242,140,40,.15); position: relative; }
-.plan .tag { position: absolute; top: -13px; left: 28px; background: var(--accent); color: var(--dark); font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 999px; }
-.plan h3 { font-size: 24px; }
-.plan .for { color: var(--ink-soft); font-size: 15px; }
-.plan ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; align-content: start; font-size: 15px; }
-.plan li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; }
-.plan li::before { content: "✓"; color: var(--ok); font-weight: 800; }
-.plan li.plus::before { content: "+"; color: var(--accent-ink); }
-.plan .btn { width: 100%; }
-.plans-note { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.plans-note div { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start; font-size: 15px; color: var(--ink-soft); }
-.plans-note b { color: var(--ink); display: block; }
-.plans-note .icon { width: 40px; height: 40px; border-radius: 10px; }
-
-/* Cómo empezar */
-#empezar { background: var(--dark); color: var(--dark-ink); }
-#empezar .eyebrow { color: var(--accent); }
-#empezar .lead { color: #d6d3d1; }
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; }
-.step { border-top: 2px solid #44403c; padding-top: 20px; display: grid; gap: 8px; }
-.step::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-weight: 800; font-size: 14px; color: var(--accent); }
-.step p { color: #d6d3d1; font-size: 15px; }
-
-/* Preguntas */
-.faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
-.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 0 22px; }
-.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 700; display: flex; justify-content: space-between; gap: 16px; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--accent-ink); }
-.faq details[open] summary::after { content: "−"; }
-.faq details p { padding-bottom: 20px; color: var(--ink-soft); }
-
-/* Contacto */
-#contacto { background: var(--bg-alt); }
-.contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
-.contact .f-copy .btn { justify-self: start; }
-form.lead-form { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: grid; gap: 16px; box-shadow: var(--shadow); }
-.lead-form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.lead-form label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
-.lead-form input, .lead-form select, .lead-form textarea {
-  font: inherit; font-size: 16px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%;
-}
-.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
-.lead-form .fine { font-size: 13px; color: var(--ink-soft); }
-
-footer { padding: 40px 0; border-top: 1px solid var(--line); }
-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--ink-soft); font-size: 14px; }
-footer img { height: 30px; width: auto; }
-footer a { color: var(--ink); font-weight: 700; }
-
-/* Franja de ASEI Consulting */
-.asei-bar { background: var(--dark); color: #d6d3d1; font-size: 13px; }
-.asei-bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; height: 36px; }
-.asei-bar a { color: var(--dark-ink); text-decoration: none; font-weight: 600; }
-.asei-bar a:hover { color: var(--accent); }
-
-/* Responsivo */
-@media (max-width: 960px) {
-  .hero .wrap, .feature, .contact { grid-template-columns: 1fr; gap: 40px; }
-  .feature.flip .f-copy { order: 0; }
-  .benefits, .plans, .plans-note { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr 1fr; }
-  .plan.featured { order: -1; }
-}
-@media (max-width: 760px) {
-  body { font-size: 16px; }
-  section { padding: 64px 0; }
-  .wrap { padding: 0 16px; }
-  .top nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 12px 16px 20px; gap: 4px; }
-  .top nav.open { display: flex; }
-  .top nav a { padding: 10px 0; font-size: 17px; }
-  .menu-btn { display: block; }
-  .top .btn-cta-top { display: none; }
-  .mock-body { grid-template-columns: 1fr; }
-  .steps, .lead-form .two, .qr-grid { grid-template-columns: 1fr; }
-  .hero { padding: 40px 0 64px; }
-}
-</style>
+<link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/asei.css" rel="stylesheet">
 </head>
-<body>
+<body data-brand="novapos" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="90" tabindex="0">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-<div class="asei-bar">
-  <div class="wrap">
-    <a href="index.html#soluciones">← Volver a ASEI Consulting</a>
-    <span>Una solución de ASEI Consulting</span>
+<div class="parent-bar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="index.html#soluciones"><i class="bi bi-arrow-left me-1"></i>ASEI Consulting</a>
+    <span class="d-none d-sm-inline">Una solución de ASEI Consulting</span>
   </div>
 </div>
 
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="#" aria-label="NovaPos Restaurant, inicio"><img src="logo-novapos.png" alt="NovaPos Restaurant"></a>
-    <nav id="nav">
-      <a href="#video">Video</a>
-      <a href="#modulos">Módulos</a>
-      <a href="#comandas">Comandas</a>
-      <a href="#qr">Pedidos QR</a>
-      <a href="#planes">Planes</a>
-      <a href="#preguntas">Preguntas</a>
-      <a href="#contacto" class="btn btn-primary" style="color:#1c1b1a">Pide tu demo</a>
-    </nav>
-    <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" onclick="var n=document.getElementById('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+<nav class="navbar navbar-expand-lg site-nav sticky-top" aria-label="Navegación de NovaPOS">
+  <div class="container">
+    <a class="navbar-brand" href="#inicio"><img src="assets/img/novapos-logo.png" alt="NovaPOS Restaurant" width="125" height="36" style="height:36px"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+      <i class="bi bi-list fs-2"></i>
     </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#video">Video</a></li>
+        <li class="nav-item"><a class="nav-link" href="#modulos">Módulos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#destacados">Comandas y QR</a></li>
+        <li class="nav-item"><a class="nav-link" href="#planes">Planes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#preguntas">Preguntas</a></li>
+        <li class="nav-item ms-lg-2"><a class="btn btn-brand nav-cta" href="#contacto">Pide tu demo</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="contenido">
+<!-- Hero -->
+<header class="hero hero-light" id="inicio">
+  <div class="container">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-lg-6">
+        <span class="eyebrow mb-3">Punto de venta para restaurantes</span>
+        <h1 class="display-title mb-4">Tu restaurante, <span class="highlight">en orden</span> desde la mesa hasta la cocina.</h1>
+        <p class="lead mb-4">NovaPOS une caja, mesas, comandas, inventario y pedidos por QR en un solo sistema. Contrata solo lo que tu negocio necesita y crece cuando quieras.</p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a class="btn btn-brand btn-lg" href="#contacto">Pide tu demo gratis <i class="bi bi-arrow-right"></i></a>
+          <a class="btn btn-outline-ink btn-lg" href="#video"><i class="bi bi-play-circle"></i>Ver video</a>
+        </div>
+        <ul class="hero-checks">
+          <li><i class="bi bi-check-circle-fill"></i>Prueba de 5 días por módulo</li>
+          <li><i class="bi bi-check-circle-fill"></i>Funciona en el navegador</li>
+          <li><i class="bi bi-check-circle-fill"></i>Impresoras térmicas 58 y 80 mm</li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <div class="np-mock" aria-hidden="true">
+          <div class="bar"><span class="dots"><i></i><i></i><i></i></span><b>Salón principal</b><span>14:32</span></div>
+          <div class="row g-2">
+            <div class="col-sm-7">
+              <div class="np-tables">
+                <div class="np-tbl busy"><strong>1</strong><span>Ocupada · 42 min</span></div>
+                <div class="np-tbl free"><strong>2</strong><span>Libre</span></div>
+                <div class="np-tbl busy"><strong>3</strong><span>Ocupada · 15 min</span></div>
+                <div class="np-tbl res"><strong>4</strong><span>Reservada</span></div>
+                <div class="np-tbl busy"><strong>5</strong><span>Ocupada · 8 min</span></div>
+                <div class="np-tbl free"><strong>6</strong><span>Libre</span></div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="np-ticket">
+                <div class="t-head"><span>Mesa 3</span><span class="np-pill">Juan</span></div>
+                <div class="row-i"><span>2 Tacos al pastor<small>sin cebolla</small></span><span>$96</span></div>
+                <div class="row-i"><span>1 Agua de horchata<small>grande</small></span><span>$45</span></div>
+                <div class="row-i"><span>1 Flan napolitano</span><span>$58</span></div>
+                <div class="total"><span>Total</span><span>$199</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="np-kds">
+            <div><b>Cocina · M1</b>Pendiente</div>
+            <div class="prep"><b>Barra · M3</b>Preparando</div>
+            <div class="ok"><b>Cocina · M5</b>Listo</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
-<main>
-<!-- Hero -->
-<section class="hero">
-  <div class="wrap">
-    <div class="copy">
-      <span class="eyebrow">Punto de venta para restaurantes</span>
-      <h1>Tu restaurante, <em>en orden</em> desde la mesa hasta la cocina.</h1>
-      <p class="lead">NovaPos une caja, mesas, comandas, inventario y pedidos por QR en un solo sistema. Contrata solo lo que tu negocio necesita y crece cuando quieras.</p>
-      <div class="ctas">
-        <a href="#contacto" class="btn btn-primary">Pide tu demo gratis</a>
-        <a href="#planes" class="btn btn-ghost">Ver planes</a>
-      </div>
-      <ul class="checks">
-        <li>Prueba de 5 días por módulo</li>
-        <li>Funciona en el navegador</li>
-        <li>Impresoras térmicas 58 y 80 mm</li>
-      </ul>
-    </div>
-
-    <div class="mock" aria-hidden="true">
-      <div class="mock-bar"><div class="dots"><i></i><i></i><i></i></div><b>Salón principal</b><span>14:32</span></div>
-      <div class="mock-body">
-        <div class="tables">
-          <div class="tbl busy"><strong>1</strong><span>Ocupada · 42 min</span></div>
-          <div class="tbl free"><strong>2</strong><span>Libre</span></div>
-          <div class="tbl busy"><strong>3</strong><span>Ocupada · 15 min</span></div>
-          <div class="tbl res"><strong>4</strong><span>Reservada</span></div>
-          <div class="tbl busy"><strong>5</strong><span>Ocupada · 8 min</span></div>
-          <div class="tbl free"><strong>6</strong><span>Libre</span></div>
-        </div>
-        <div class="ticket">
-          <div class="t-head"><span>Mesa 3</span><span class="pill">Juan · mesero</span></div>
-          <div class="row"><span>2 Tacos al pastor<small>sin cebolla</small></span><span>$96</span></div>
-          <div class="row"><span>1 Agua de horchata<small>grande</small></span><span>$45</span></div>
-          <div class="row"><span>1 Flan napolitano</span><span>$58</span></div>
-          <div class="total"><span>Total</span><span>$199</span></div>
-        </div>
-      </div>
-      <div class="kds">
-        <div><b>Cocina · M1</b>Pendiente</div>
-        <div class="prep"><b>Barra · M3</b>Preparando</div>
-        <div class="ok"><b>Cocina · M5</b>Listo</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="biz">
-  <div class="wrap">
-    <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v20M4 2v6a3 3 0 0 0 6 0V2M17 2c-2 0-3 3-3 7h3v13"/></svg>Restaurantes</span>
-    <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zM6 2v3M10 2v3M14 2v3"/></svg>Cafeterías</span>
-    <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 15v7M5 3h14l-7 12z"/></svg>Bares</span>
-    <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5M3 9h18v11H3zM9 20v-6h6v6"/></svg>Taquerías y fondas</span>
-    <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h6l3-7h3M9 7h4l2 3"/></svg>Comida a domicilio</span>
+<div class="segment-strip py-4">
+  <div class="container d-flex flex-wrap justify-content-center gap-3 gap-md-5">
+    <span class="item"><i class="bi bi-shop"></i>Restaurantes</span>
+    <span class="item"><i class="bi bi-cup-hot"></i>Cafeterías</span>
+    <span class="item"><i class="bi bi-cup-straw"></i>Bares</span>
+    <span class="item"><i class="bi bi-fire"></i>Taquerías y fondas</span>
+    <span class="item"><i class="bi bi-scooter"></i>Comida a domicilio</span>
   </div>
 </div>
 
 <!-- Video -->
-<section id="video" class="video-sec">
-  <div class="wrap">
-    <div class="section-head center">
+<section class="section" id="video">
+  <div class="container">
+    <div class="section-head text-center reveal">
       <span class="eyebrow">Míralo en 20 segundos</span>
-      <h2>De la mesa a la cocina, la caja y tus reportes.</h2>
+      <h2 class="section-title">De la mesa a la cocina, la caja y tus reportes.</h2>
     </div>
-    <div class="video-box">
-      <video src="NovaPOS_Restaurant_promo.mp4" controls muted playsinline preload="metadata" poster="novapos-video-poster.jpg"></video>
+    <div class="row justify-content-center reveal">
+      <div class="col-lg-10">
+        <div class="video-frame">
+          <video src="assets/video/novapos-promo.mp4" poster="assets/img/novapos-video-poster.jpg" controls muted playsinline preload="metadata"></video>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Beneficios -->
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Por qué NovaPos</span>
-      <h2>Menos papeles, menos errores y la cuenta clara al cierre.</h2>
+<section class="section pt-0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué NovaPOS</span>
+      <h2 class="section-title">Menos papeles, menos errores y la cuenta clara al cierre.</h2>
     </div>
-    <div class="benefits">
-      <article class="card">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
-        <h3>Pagas solo lo que usas</h3>
-        <p>Empieza con mostrador y caja. Agrega mesas, cocina, inventario o pedidos por QR cuando tu negocio lo pida, sin cambiar de sistema.</p>
-      </article>
-      <article class="card">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><path d="M17 15l2 2 4-4"/></svg></div>
-        <h3>La cocina recibe todo al instante</h3>
-        <p>Cada platillo llega a su estación —cocina o barra— en pantalla o impreso. Sin comandas perdidas ni letra ilegible.</p>
-      </article>
-      <article class="card">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
-        <h3>Sabes cuánto ganas</h3>
-        <p>Cortes de caja, productos más vendidos, ventas por mesero y por hora, mermas y rentabilidad por platillo.</p>
-      </article>
+    <div class="row g-4">
+      <div class="col-md-4 reveal"><article class="card-soft card-hover"><span class="icon-tile"><i class="bi bi-puzzle"></i></span><h3>Pagas solo lo que usas</h3><p>Empieza con mostrador y caja. Agrega mesas, cocina, inventario o pedidos por QR cuando tu negocio lo pida, sin cambiar de sistema.</p></article></div>
+      <div class="col-md-4 reveal"><article class="card-soft card-hover"><span class="icon-tile"><i class="bi bi-lightning-charge"></i></span><h3>La cocina recibe todo al instante</h3><p>Cada platillo llega a su estación —cocina o barra— en pantalla o impreso. Sin comandas perdidas ni letra ilegible.</p></article></div>
+      <div class="col-md-4 reveal"><article class="card-soft card-hover"><span class="icon-tile"><i class="bi bi-graph-up-arrow"></i></span><h3>Sabes cuánto ganas</h3><p>Cortes de caja, productos más vendidos, ventas por mesero y por hora, mermas y rentabilidad por platillo.</p></article></div>
     </div>
   </div>
 </section>
 
 <!-- Módulos -->
-<section id="modulos">
-  <div class="wrap">
-    <div class="section-head">
+<section class="section bg-surface-2" id="modulos">
+  <div class="container">
+    <div class="section-head reveal">
       <span class="eyebrow">Módulos</span>
-      <h2>Arma NovaPos a la medida de tu negocio.</h2>
-      <p class="lead">Cada módulo se contrata por separado y trabaja junto con los demás.</p>
+      <h2 class="section-title">Arma NovaPOS a la medida de tu negocio.</h2>
+      <p class="lead mb-0">Cada módulo se contrata por separado y trabaja junto con los demás.</p>
     </div>
-    <div class="modules">
-      <article class="mod core">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></div><h3>Núcleo</h3></header>
-        <p>Siempre incluido: usuarios, roles y permisos, productos, categorías, fotografías y modificadores (sin cebolla, extra queso, tamaño grande).</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M7 8V4h10v4M7 13h2M11 13h2M15 13h2M7 17h10"/></svg></div><h3>Mostrador y Caja</h3></header>
-        <p>Venta rápida, apertura y corte de caja, efectivo, tarjeta y transferencia, descuentos y propinas, y reportes básicos.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14M7 11v9M17 11v9M6 4h12l1 7H5z"/></svg></div><h3>Restaurante (mesas)</h3></header>
-        <p>Mapa de mesas libres, ocupadas y reservadas, cuentas por mesa, dividir y combinar cuentas, y ventas por mesero.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14a6 6 0 1 1 12 0H6zM4 14h16M8 18h8M12 5V3"/></svg></div><h3>Comandas</h3></header>
-        <p>Estaciones de cocina y barra. Elige pantalla de cocina, impresión de comandas y seguimiento del estado de preparación.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/></svg></div><h3>Inventario y compras</h3></header>
-        <p>Materias primas, recetas con descuento automático al vender, kardex, mermas, proveedores, compras y alertas de mínimo.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 11h5M19.5 8.5v5"/></svg></div><h3>Clientes</h3></header>
-        <p>Catálogo de clientes con datos fiscales e historial de compras.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S10 3 7.5 4.5 9 8 12 8zM12 8s2-5 4.5-3.5S15 8 12 8z"/></svg></div><h3>Lealtad</h3></header>
-        <p>Programa de puntos y premios para que tus clientes regresen.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 15h3"/></svg></div><h3>Eventos y reservaciones</h3></header>
-        <p>Agenda de eventos, mesas apartadas, contrato, anticipos y la cuenta completa del evento.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></div><h3>Pedidos por QR</h3></header>
-        <p>Menú digital y pedidos del cliente desde su celular: en la mesa, para llevar o a domicilio.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h6l3-7h3M9 7h4l2 3"/></svg></div><h3>Repartos</h3></header>
-        <p>Pantalla del repartidor y seguimiento de cada entrega a domicilio.</p>
-      </article>
-      <article class="mod">
-        <header><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Reportes avanzados</h3></header>
-        <p>Comparativos entre periodos, ventas por hora, categoría y canal, descuentos y tablero del día. Exporta a Excel y PDF.</p>
-      </article>
+    <div class="row g-3 g-lg-4">
+      <div class="col-sm-6 col-lg-4 reveal"><article class="card-soft card-dark"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-box"></i></span><h3 class="m-0">Núcleo</h3></div><p class="mt-3">Siempre incluido: usuarios, roles y permisos, productos, categorías, fotografías y modificadores.</p></article></div>
+      <div class="col-sm-6 col-lg-4 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-cash-coin"></i></span><h3 class="m-0">Mostrador y Caja</h3></div><p class="mt-3">Venta rápida, apertura y corte de caja, efectivo, tarjeta y transferencia, descuentos, propinas y reportes básicos.</p></article></div>
+      <div class="col-sm-6 col-lg-4 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-grid-3x3-gap"></i></span><h3 class="m-0">Restaurante (mesas)</h3></div><p class="mt-3">Mapa de mesas libres, ocupadas y reservadas, cuentas por mesa, dividir y combinar cuentas, ventas por mesero.</p></article></div>
+      <div class="col-sm-6 col-lg-4 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-fire"></i></span><h3 class="m-0">Comandas</h3></div><p class="mt-3">Estaciones de cocina y barra con pantalla, impresión de comandas y estado de preparación.</p></article></div>
+      <div class="col-sm-6 col-lg-4 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-boxes"></i></span><h3 class="m-0">Inventario y compras</h3></div><p class="mt-3">Materias primas, recetas con descuento automático al vender, kardex, mermas, proveedores y alertas de mínimo.</p></article></div>
+      <div class="col-sm-6 col-lg-4 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-bar-chart-line"></i></span><h3 class="m-0">Reportes avanzados</h3></div><p class="mt-3">Comparativos entre periodos, ventas por hora, categoría y canal, descuentos y tablero del día. Exporta a Excel y PDF.</p></article></div>
+      <div class="col-sm-6 col-lg-3 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-person-vcard"></i></span><h3 class="m-0">Clientes</h3></div><p class="mt-3">Datos fiscales e historial de compras.</p></article></div>
+      <div class="col-sm-6 col-lg-3 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-gift"></i></span><h3 class="m-0">Lealtad</h3></div><p class="mt-3">Programa de puntos y premios.</p></article></div>
+      <div class="col-sm-6 col-lg-3 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-calendar-event"></i></span><h3 class="m-0">Eventos</h3></div><p class="mt-3">Reservaciones, contrato, anticipos y cuenta del evento.</p></article></div>
+      <div class="col-sm-6 col-lg-3 reveal"><article class="card-soft"><div class="d-flex align-items-center gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-qr-code"></i></span><h3 class="m-0">QR y Repartos</h3></div><p class="mt-3">Pedidos desde el celular y seguimiento de entregas.</p></article></div>
     </div>
   </div>
 </section>
 
 <!-- Destacados -->
-<section>
-  <div class="wrap">
-    <div class="feature" id="comandas">
-      <div class="f-copy">
-        <span class="eyebrow">Comandas</span>
-        <h2>De la mesa a la cocina, sin correr.</h2>
-        <p class="lead">El mesero toma la orden y cada platillo llega solo a la estación que lo prepara.</p>
-        <ul>
+<section class="section" id="destacados">
+  <div class="container">
+    <div class="row g-4 g-lg-5 align-items-center mb-5 pb-lg-4">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Comandas</span>
+        <h2 class="section-title mb-3">De la mesa a la cocina, sin correr.</h2>
+        <p class="lead mb-4">El mesero toma la orden y cada platillo llega solo a la estación que lo prepara.</p>
+        <ul class="check-list">
           <li><span><b>Pantalla de cocina y barra</b> con lo pendiente, lo que se prepara y lo que está listo.</span></li>
           <li><span><b>Impresión de comandas</b> en térmicas de 58 u 80 mm por red, USB o Bluetooth.</span></li>
           <li><span><b>Solo lo nuevo:</b> si la mesa pide otra ronda, cocina recibe únicamente lo agregado.</span></li>
           <li><span><b>Reimpresión</b> con un clic si una hoja se pierde.</span></li>
         </ul>
       </div>
-      <div class="f-visual" aria-hidden="true">
-        <div class="printer">
-          <b>COCINA</b> · Mesa 3<br>
-          Mesero: Juan · 14:32
-          <hr>
-          2 x TACOS AL PASTOR<br>
-          &nbsp;&nbsp;- sin cebolla<br>
-          1 x QUESADILLA<br>
-          &nbsp;&nbsp;- extra queso
-          <hr>
-          Envío #2 · solo lo nuevo
+      <div class="col-lg-6 reveal">
+        <div class="card-soft bg-surface-2 d-flex justify-content-center" aria-hidden="true">
+          <div class="ticket-print w-100">
+            <b>COCINA</b> · Mesa 3<br>Mesero: Juan · 14:32
+            <hr>2 x TACOS AL PASTOR<br>&nbsp;&nbsp;- sin cebolla<br>1 x QUESADILLA<br>&nbsp;&nbsp;- extra queso
+            <hr>Envío #2 · solo lo nuevo
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="feature flip" id="qr">
-      <div class="f-copy">
-        <span class="eyebrow">Pedidos por QR</span>
-        <h2>Tus clientes ordenan desde su celular.</h2>
-        <p class="lead">Sin descargar apps. Escanean, eligen del menú con fotos y el pedido entra directo a NovaPos.</p>
-        <ul>
+    <div class="row g-4 g-lg-5 align-items-center">
+      <div class="col-lg-6 order-lg-2 reveal">
+        <span class="eyebrow mb-3">Pedidos por QR</span>
+        <h2 class="section-title mb-3">Tus clientes ordenan desde su celular.</h2>
+        <p class="lead mb-4">Sin descargar apps. Escanean, eligen del menú con fotos y el pedido entra directo a NovaPOS.</p>
+        <ul class="check-list">
           <li><span><b>QR de mesa:</b> el comensal ordena sin esperar al mesero.</span></li>
           <li><span><b>QR de mostrador:</b> pedidos para llevar sin hacer fila.</span></li>
           <li><span><b>QR de domicilio:</b> con dirección, ubicación y forma de pago.</span></li>
         </ul>
       </div>
-      <div class="f-visual" aria-hidden="true">
-        <div class="qr-grid">
-          <div><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>Mesa<small>Ordena y pide la cuenta</small></div>
-          <div><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>Mostrador<small>Para llevar</small></div>
-          <div><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>Domicilio<small>Con seguimiento</small></div>
+      <div class="col-lg-6 order-lg-1 reveal">
+        <div class="card-soft" aria-hidden="true">
+          <div class="row g-3">
+            <div class="col-4"><div class="qr-tile"><i class="bi bi-qr-code"></i><b>Mesa</b><small>Ordena y pide la cuenta</small></div></div>
+            <div class="col-4"><div class="qr-tile"><i class="bi bi-qr-code"></i><b>Mostrador</b><small>Para llevar</small></div></div>
+            <div class="col-4"><div class="qr-tile"><i class="bi bi-qr-code"></i><b>Domicilio</b><small>Con seguimiento</small></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -467,188 +215,147 @@ footer a { color: var(--ink); font-weight: 700; }
 </section>
 
 <!-- Planes -->
-<section id="planes" style="background: var(--bg-alt);">
-  <div class="wrap">
-    <div class="section-head center">
+<section class="section bg-surface-2" id="planes">
+  <div class="container">
+    <div class="section-head text-center reveal">
       <span class="eyebrow">Planes</span>
-      <h2>Elige un punto de partida.</h2>
-      <p class="lead">Todos incluyen el Núcleo. A cualquier plan le puedes sumar módulos adicionales.</p>
+      <h2 class="section-title">Elige un punto de partida.</h2>
+      <p class="lead mb-0">Todos incluyen el Núcleo. A cualquier plan le puedes sumar módulos adicionales.</p>
     </div>
-    <div class="plans">
-      <article class="plan">
-        <h3>Básico</h3>
-        <p class="for">Para cafeterías, taquerías y negocios de mostrador.</p>
-        <ul>
-          <li>Núcleo: usuarios, permisos y productos</li>
-          <li>Mostrador y Caja</li>
-          <li>Cortes de caja</li>
-          <li>Reportes básicos de ventas</li>
-        </ul>
-        <a href="#contacto" class="btn btn-ghost" data-plan="Básico">Cotizar Básico</a>
-      </article>
-      <article class="plan featured">
-        <span class="tag">El más elegido</span>
-        <h3>Restaurante</h3>
-        <p class="for">Para restaurantes con servicio a mesa y cocina.</p>
-        <ul>
-          <li>Todo lo del plan Básico</li>
-          <li>Mesas: mapa, dividir y combinar cuentas</li>
-          <li>Comandas con pantalla de cocina y barra</li>
-          <li>Estado de preparación</li>
-          <li>Inventario, recetas y compras</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary" data-plan="Restaurante">Cotizar Restaurante</a>
-      </article>
-      <article class="plan">
-        <h3>Completo</h3>
-        <p class="for">Para quien quiere todo, desde el primer día.</p>
-        <ul>
-          <li>Todo lo del plan Restaurante</li>
-          <li class="plus">Impresión de comandas</li>
-          <li class="plus">Clientes y Lealtad</li>
-          <li class="plus">Eventos y reservaciones</li>
-          <li class="plus">Pedidos por QR y Repartos</li>
-          <li class="plus">Reportes avanzados</li>
-        </ul>
-        <a href="#contacto" class="btn btn-ghost" data-plan="Completo">Cotizar Completo</a>
-      </article>
+    <div class="row g-4 align-items-stretch pt-2">
+      <div class="col-lg-4 reveal">
+        <article class="card-soft plan">
+          <h3 class="plan-name">Básico</h3>
+          <p class="plan-for">Para cafeterías, taquerías y negocios de mostrador.</p>
+          <ul class="check-list"><li>Núcleo: usuarios, permisos y productos</li><li>Mostrador y Caja</li><li>Cortes de caja</li><li>Reportes básicos de ventas</li></ul>
+          <a class="btn btn-outline-ink" href="#contacto" data-select="plan=Básico">Cotizar Básico</a>
+        </article>
+      </div>
+      <div class="col-lg-4 reveal">
+        <article class="card-soft plan featured">
+          <span class="ribbon">El más elegido</span>
+          <h3 class="plan-name">Restaurante</h3>
+          <p class="plan-for">Para restaurantes con servicio a mesa y cocina.</p>
+          <ul class="check-list"><li>Todo lo del plan Básico</li><li>Mesas: mapa, dividir y combinar cuentas</li><li>Comandas con pantalla de cocina y barra</li><li>Estado de preparación</li><li>Inventario, recetas y compras</li></ul>
+          <a class="btn btn-brand" href="#contacto" data-select="plan=Restaurante">Cotizar Restaurante</a>
+        </article>
+      </div>
+      <div class="col-lg-4 reveal">
+        <article class="card-soft plan">
+          <h3 class="plan-name">Completo</h3>
+          <p class="plan-for">Para quien quiere todo, desde el primer día.</p>
+          <ul class="check-list"><li>Todo lo del plan Restaurante</li><li class="plus">Impresión de comandas</li><li class="plus">Clientes y Lealtad</li><li class="plus">Eventos y reservaciones</li><li class="plus">Pedidos por QR y Repartos</li><li class="plus">Reportes avanzados</li></ul>
+          <a class="btn btn-outline-ink" href="#contacto" data-select="plan=Completo">Cotizar Completo</a>
+        </article>
+      </div>
     </div>
-    <div class="plans-note">
-      <div><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><p><b>Prueba de 5 días</b>Activa cualquier módulo y pruébalo antes de contratarlo.</p></div>
-      <div><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M10 21v-6h4v6"/></svg></div><p><b>Varias sucursales</b>Un contrato por empresa, ajustado a lo que usa cada sucursal.</p></div>
-      <div><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><p><b>Tu plan, siempre a la vista</b>Consulta en «Mi plan» qué tienes contratado y cuándo vence.</p></div>
+    <div class="row g-4 mt-2">
+      <div class="col-md-4 reveal"><div class="d-flex gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-hourglass-split"></i></span><p class="mb-0 text-muted-2"><b class="d-block text-body-emphasis">Prueba de 5 días</b>Activa cualquier módulo y pruébalo antes de contratarlo.</p></div></div>
+      <div class="col-md-4 reveal"><div class="d-flex gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-buildings"></i></span><p class="mb-0 text-muted-2"><b class="d-block text-body-emphasis">Varias sucursales</b>Un contrato por empresa, ajustado a lo que usa cada sucursal.</p></div></div>
+      <div class="col-md-4 reveal"><div class="d-flex gap-3"><span class="icon-tile icon-tile-sm"><i class="bi bi-shield-check"></i></span><p class="mb-0 text-muted-2"><b class="d-block text-body-emphasis">Tu plan a la vista</b>Consulta en «Mi plan» qué tienes contratado y cuándo vence.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- Cómo empezar -->
-<section id="empezar">
-  <div class="wrap">
-    <div class="section-head">
+<section class="section bg-night" id="empezar">
+  <div class="container">
+    <div class="section-head reveal">
       <span class="eyebrow">Cómo empezar</span>
-      <h2>Vendiendo con NovaPos en pocos días.</h2>
-      <p class="lead">Te acompañamos en cada paso, desde el menú hasta la primera venta.</p>
+      <h2 class="section-title">Vendiendo con NovaPOS en pocos días.</h2>
+      <p class="lead mb-0">Te acompañamos en cada paso, desde el menú hasta la primera venta.</p>
     </div>
-    <div class="steps">
-      <div class="step"><h3>Demo</h3><p>Te mostramos NovaPos con un menú como el tuyo y armamos el plan a tu medida.</p></div>
-      <div class="step"><h3>Configuración</h3><p>Cargamos productos, categorías, mesas, estaciones y usuarios.</p></div>
-      <div class="step"><h3>Equipo</h3><p>Conectamos tus impresoras térmicas y pantallas de cocina.</p></div>
-      <div class="step"><h3>Capacitación</h3><p>Enseñamos a cajeros, meseros y cocina. Listo para abrir.</p></div>
+    <div class="row g-4 steps steps-line">
+      <div class="col-sm-6 col-lg-3 reveal"><div class="step"><h3>Demo</h3><p>Te mostramos NovaPOS con un menú como el tuyo y armamos el plan a tu medida.</p></div></div>
+      <div class="col-sm-6 col-lg-3 reveal"><div class="step"><h3>Configuración</h3><p>Cargamos productos, categorías, mesas, estaciones y usuarios.</p></div></div>
+      <div class="col-sm-6 col-lg-3 reveal"><div class="step"><h3>Equipo</h3><p>Conectamos tus impresoras térmicas y pantallas de cocina.</p></div></div>
+      <div class="col-sm-6 col-lg-3 reveal"><div class="step"><h3>Capacitación</h3><p>Enseñamos a cajeros, meseros y cocina. Listo para abrir.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- Preguntas -->
-<section id="preguntas">
-  <div class="wrap">
-    <div class="section-head center">
+<section class="section" id="preguntas">
+  <div class="container">
+    <div class="section-head text-center reveal">
       <span class="eyebrow">Preguntas frecuentes</span>
-      <h2>Lo que más nos preguntan.</h2>
+      <h2 class="section-title">Lo que más nos preguntan.</h2>
     </div>
-    <div class="faq">
-      <details>
-        <summary>¿Necesito instalar algo?</summary>
-        <p>No. NovaPos funciona desde el navegador en computadora, tableta o celular. Solo si usas impresoras de comandas instalamos un pequeño agente en una PC de tu sucursal para enviarles los tickets.</p>
-      </details>
-      <details>
-        <summary>¿Qué impresoras puedo usar?</summary>
-        <p>Impresoras térmicas de 58 u 80 mm compatibles con ESC/POS, conectadas por red, USB o Bluetooth. Cada estación (cocina, barra) puede tener su propia impresora.</p>
-      </details>
-      <details>
-        <summary>¿Puedo empezar con poco y crecer después?</summary>
-        <p>Sí. Empieza con el plan Básico y agrega módulos como mesas, comandas, inventario o pedidos por QR cuando los necesites. Tu información se conserva.</p>
-      </details>
-      <details>
-        <summary>¿Cómo funciona la prueba?</summary>
-        <p>Puedes activar cualquier módulo por 5 días para probarlo con tu operación real. Al terminar decides si lo contratas.</p>
-      </details>
-      <details>
-        <summary>¿Sirve para varias sucursales?</summary>
-        <p>Sí. Manejas tus sucursales desde una misma empresa y cada una puede tener módulos distintos según lo que necesite.</p>
-      </details>
-      <details>
-        <summary>¿Qué pasa si se vence mi contrato?</summary>
-        <p>Te avisamos con anticipación dentro del sistema. Si vence, tienes unos días de gracia y después el módulo queda en modo consulta: tu información nunca se borra.</p>
-      </details>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion faq reveal" id="faq">
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="true" aria-controls="q1">¿Necesito instalar algo?</button></h3><div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faq"><div class="accordion-body">No. NovaPOS funciona desde el navegador en computadora, tableta o celular. Solo si usas impresoras de comandas instalamos un pequeño agente en una PC de tu sucursal para enviarles los tickets.</div></div></div>
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="false" aria-controls="q2">¿Qué impresoras puedo usar?</button></h3><div id="q2" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body">Impresoras térmicas de 58 u 80 mm compatibles con ESC/POS, conectadas por red, USB o Bluetooth. Cada estación (cocina, barra) puede tener su propia impresora.</div></div></div>
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="false" aria-controls="q3">¿Puedo empezar con poco y crecer después?</button></h3><div id="q3" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body">Sí. Empieza con el plan Básico y agrega módulos como mesas, comandas, inventario o pedidos por QR cuando los necesites. Tu información se conserva.</div></div></div>
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4" aria-expanded="false" aria-controls="q4">¿Cómo funciona la prueba?</button></h3><div id="q4" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body">Puedes activar cualquier módulo por 5 días para probarlo con tu operación real. Al terminar decides si lo contratas.</div></div></div>
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5" aria-expanded="false" aria-controls="q5">¿Sirve para varias sucursales?</button></h3><div id="q5" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body">Sí. Manejas tus sucursales desde una misma empresa y cada una puede tener módulos distintos según lo que necesite.</div></div></div>
+          <div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6" aria-expanded="false" aria-controls="q6">¿Qué pasa si se vence mi contrato?</button></h3><div id="q6" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body">Te avisamos con anticipación dentro del sistema. Si vence, tienes unos días de gracia y después el módulo queda en modo consulta: tu información nunca se borra.</div></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Contacto -->
-<section id="contacto">
-  <div class="wrap contact">
-    <div class="f-copy">
-      <span class="eyebrow">Contacto</span>
-      <h2>Agenda una demo sin compromiso.</h2>
-      <p class="lead">Cuéntanos de tu negocio y te contactamos para mostrarte NovaPos y cotizar tu plan.</p>
-      <ul>
-        <li><span><b>Demo en línea</b> de 30 minutos.</span></li>
-        <li><span><b>Cotización</b> con solo los módulos que necesitas.</span></li>
-      </ul>
-      <a class="btn btn-ghost" id="wa" href="https://wa.me/525539748069" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+<section class="section bg-surface-2" id="contacto">
+  <div class="container">
+    <div class="row g-4 g-lg-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Contacto</span>
+        <h2 class="section-title mb-3">Agenda una demo sin compromiso.</h2>
+        <p class="lead mb-4">Cuéntanos de tu negocio y te contactamos para mostrarte NovaPOS y cotizar tu plan.</p>
+        <ul class="check-list mb-4">
+          <li><span><b>Demo en línea</b> de 30 minutos.</span></li>
+          <li><span><b>Cotización</b> con solo los módulos que necesitas.</span></li>
+        </ul>
+        <a class="contact-item" href="https://wa.me/525539748069" target="_blank" rel="noopener">
+          <span class="icon-tile icon-wa"><i class="bi bi-whatsapp"></i></span>
+          <span><small>WhatsApp</small><strong>55 3974 8069</strong></span>
+          <i class="bi bi-box-arrow-up-right ms-auto text-muted-2"></i>
+        </a>
+      </div>
+      <div class="col-lg-7 reveal">
+        <form class="form-card" data-contact novalidate data-intro="Hola, quiero una demo de NovaPOS Restaurant.">
+          <div class="row g-3">
+            <div class="col-sm-6"><label class="form-label" for="nombre">Nombre <span class="req">*</span></label><input class="form-control" id="nombre" name="nombre" data-label="Nombre" required autocomplete="name"><div class="invalid-feedback">Escribe tu nombre.</div></div>
+            <div class="col-sm-6"><label class="form-label" for="telefono">Teléfono <span class="req">*</span></label><input class="form-control" id="telefono" name="telefono" data-label="Teléfono" type="tel" required autocomplete="tel" placeholder="10 dígitos"><div class="invalid-feedback">Escribe un teléfono para contactarte.</div></div>
+            <div class="col-sm-6"><label class="form-label" for="negocio">Negocio <span class="req">*</span></label><input class="form-control" id="negocio" name="negocio" data-label="Negocio" required autocomplete="organization"><div class="invalid-feedback">Escribe el nombre de tu negocio.</div></div>
+            <div class="col-sm-6"><label class="form-label" for="tipo">Tipo de negocio</label><select class="form-select" id="tipo" name="tipo" data-label="Tipo"><option>Restaurante</option><option>Cafetería</option><option>Bar</option><option>Taquería o fonda</option><option>Otro</option></select></div>
+            <div class="col-sm-6"><label class="form-label" for="plan">Plan de interés</label><select class="form-select" id="plan" name="plan" data-label="Plan"><option>Aún no sé</option><option>Básico</option><option>Restaurante</option><option>Completo</option></select></div>
+            <div class="col-sm-6"><label class="form-label" for="sucursales">Sucursales</label><input class="form-control" id="sucursales" name="sucursales" data-label="Sucursales" type="number" min="1" value="1"></div>
+            <div class="col-12"><label class="form-label" for="comentarios">Comentarios</label><textarea class="form-control" id="comentarios" name="comentarios" data-label="Comentarios" rows="3" placeholder="¿Qué te gustaría resolver?"></textarea></div>
+            <div class="col-12 d-grid"><button class="btn btn-wa btn-lg" type="submit"><i class="bi bi-whatsapp"></i>Enviar por WhatsApp</button></div>
+            <div class="col-12"><p class="form-status mb-1" role="status" aria-live="polite"></p><p class="form-hint mb-0"><i class="bi bi-shield-check me-1"></i>Se abre WhatsApp con tus datos para que nos los mandes. No guardamos información en ningún servidor.</p></div>
+          </div>
+        </form>
+      </div>
     </div>
-    <form class="lead-form" id="leadForm">
-      <div class="two">
-        <label>Nombre<input name="nombre" required autocomplete="name"></label>
-        <label>Teléfono<input name="telefono" type="tel" required autocomplete="tel"></label>
-      </div>
-      <div class="two">
-        <label>Negocio<input name="negocio" required autocomplete="organization"></label>
-        <label>Tipo de negocio
-          <select name="tipo">
-            <option>Restaurante</option><option>Cafetería</option><option>Bar</option><option>Taquería o fonda</option><option>Otro</option>
-          </select>
-        </label>
-      </div>
-      <div class="two">
-        <label>Plan de interés
-          <select name="plan" id="planSel">
-            <option>Aún no sé</option><option>Básico</option><option>Restaurante</option><option>Completo</option>
-          </select>
-        </label>
-        <label>Sucursales<input name="sucursales" type="number" min="1" value="1"></label>
-      </div>
-      <label>Comentarios<textarea name="comentarios" rows="3" placeholder="¿Qué te gustaría resolver?"></textarea></label>
-      <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
-      <p class="fine">Al enviar se abre WhatsApp con tus datos para que nos los mandes.</p>
-    </form>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <img src="logo-novapos.png" alt="NovaPos Restaurant">
-    <span>© <span id="year">2026</span> NovaPos · Una solución de <a href="index.html">ASEI Consulting</a></span>
+<footer class="site-footer pt-5">
+  <div class="container">
+    <div class="row g-4 pb-5">
+      <div class="col-lg-5">
+        <span class="footer-logo mb-3"><img src="assets/img/novapos-logo.png" alt="NovaPOS Restaurant"></span>
+        <p class="mb-0 pe-lg-5">Punto de venta para restaurantes. Una solución de <a href="index.html">ASEI Consulting</a>.</p>
+      </div>
+      <div class="col-6 col-lg-2 offset-lg-1"><h6>NovaPOS</h6><ul><li><a href="#modulos">Módulos</a></li><li><a href="#planes">Planes</a></li><li><a href="#preguntas">Preguntas</a></li></ul></div>
+      <div class="col-6 col-lg-2"><h6>ASEI</h6><ul><li><a href="index.html">Inicio</a></li><li><a href="bocattosoft.html">BocattoSoft</a></li><li><a href="index.html#contacto">Contacto</a></li></ul></div>
+      <div class="col-lg-2"><h6>Contacto</h6><ul><li><a href="https://wa.me/525539748069" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-2"></i>55 3974 8069</a></li></ul></div>
+    </div>
+    <div class="footer-bottom py-4 d-flex flex-column flex-sm-row justify-content-between gap-2">
+      <span>© <span data-year>2026</span> NovaPOS · ASEI Consulting</span>
+      <a href="#inicio">Volver arriba <i class="bi bi-arrow-up"></i></a>
+    </div>
   </div>
 </footer>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+<a class="fab-top" href="#inicio" aria-label="Volver arriba"><i class="bi bi-arrow-up"></i></a>
+<a class="fab-wa" href="https://wa.me/525539748069" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
-  // Cerrar el menú móvil al elegir una sección
-  document.querySelectorAll('#nav a').forEach(function (a) {
-    a.addEventListener('click', function () { document.getElementById('nav').classList.remove('open'); });
-  });
-
-  // Los botones de cada plan preseleccionan el plan en el formulario
-  document.querySelectorAll('[data-plan]').forEach(function (b) {
-    b.addEventListener('click', function () { document.getElementById('planSel').value = b.dataset.plan; });
-  });
-
-  // El formulario arma el mensaje y lo abre en WhatsApp (sin servidor)
-  document.getElementById('leadForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var d = new FormData(e.target);
-    var texto = 'Hola, quiero una demo de NovaPos.\n' +
-      'Nombre: ' + d.get('nombre') + '\n' +
-      'Teléfono: ' + d.get('telefono') + '\n' +
-      'Negocio: ' + d.get('negocio') + ' (' + d.get('tipo') + ')\n' +
-      'Plan: ' + d.get('plan') + ' · Sucursales: ' + d.get('sucursales') +
-      (d.get('comentarios') ? '\nComentarios: ' + d.get('comentarios') : '');
-    var base = document.getElementById('wa').href.split('?')[0];
-    window.open(base + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
-  });
-</script>
+<script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="assets/js/asei.js"></script>
 </body>
 </html>
