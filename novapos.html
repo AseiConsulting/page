@@ -111,6 +111,11 @@ header.top {
 .biz span { display: inline-flex; gap: 10px; align-items: center; }
 .biz svg { color: var(--accent); }
 
+/* Video */
+.video-sec { padding-bottom: 0; }
+.video-box { max-width: 960px; margin: 0 auto; background: var(--dark); border-radius: 22px; padding: 10px; box-shadow: 0 30px 60px rgba(28,27,26,.22); }
+.video-box video { width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: #000; }
+
 /* Beneficios */
 .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; gap: 12px; align-content: start; box-shadow: var(--shadow); }
@@ -241,6 +246,7 @@ footer a { color: var(--ink); font-weight: 700; }
   <div class="wrap">
     <a class="logo" href="#" aria-label="NovaPos Restaurant, inicio"><img src="logo-novapos.png" alt="NovaPos Restaurant"></a>
     <nav id="nav">
+      <a href="#video">Video</a>
       <a href="#modulos">Módulos</a>
       <a href="#comandas">Comandas</a>
       <a href="#qr">Pedidos QR</a>
@@ -310,6 +316,19 @@ footer a { color: var(--ink); font-weight: 700; }
     <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17h6l3-7h3M9 7h4l2 3"/></svg>Comida a domicilio</span>
   </div>
 </div>
+
+<!-- Video -->
+<section id="video" class="video-sec">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Míralo en 20 segundos</span>
+      <h2>De la mesa a la cocina, la caja y tus reportes.</h2>
+    </div>
+    <div class="video-box">
+      <video src="NovaPOS_Restaurant_promo.mp4" controls muted playsinline preload="metadata" poster="novapos-video-poster.jpg"></video>
+    </div>
+  </div>
+</section>
 
 <!-- Beneficios -->
 <section>

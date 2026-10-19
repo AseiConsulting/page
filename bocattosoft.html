@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BocattoSoft · Menú digital para restaurantes</title>
+<meta name="description" content="BocattoSoft es el menú digital con fotos para restaurantes, dark kitchens y snacks: tus clientes piden desde el celular y el pedido te llega por WhatsApp y a tu panel.">
+<link rel="icon" type="image/webp" href="logo_bocatto_soft.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fffaf4;
+  --bg-alt: #fff1e2;
+  --surface: #ffffff;
+  --ink: #14213d;
+  --ink-soft: #55607a;
+  --line: #f0e2d2;
+  --navy: #13294b;
+  --blue: #1d4f91;
+  --accent: #f7931e;
+  --accent-2: #fbb03b;
+  --accent-ink: #b45f06;
+  --accent-bg: #ffe9cf;
+  --wa: #25d366;
+  --ok: #1f9d55;
+  --radius: 18px;
+  --shadow: 0 1px 2px rgba(20,33,61,.06), 0 10px 28px rgba(20,33,61,.07);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+}
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
+h3 { font-size: 19px; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); }
+.lead { color: var(--ink-soft); font-size: 19px; }
+section { padding: 88px 0; }
+.section-head { max-width: 680px; margin-bottom: 48px; display: grid; gap: 14px; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 16px;
+  text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s, filter .15s;
+  font-family: inherit;
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--navy); }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-ghost { border-color: var(--navy); color: var(--navy); background: transparent; }
+.btn-wa { background: var(--wa); color: #08341a; }
+
+/* Franja ASEI */
+.asei-bar { background: var(--navy); color: #c9d3e6; font-size: 13px; }
+.asei-bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; height: 36px; }
+.asei-bar a { color: #fff; text-decoration: none; font-weight: 600; }
+.asei-bar a:hover { color: var(--accent-2); }
+
+/* Encabezado */
+header.top { position: sticky; top: 0; z-index: 20; background: rgba(255,250,244,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+.top .logo img { height: 44px; width: auto; }
+.top nav { display: flex; gap: 28px; align-items: center; }
+.top nav a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--ink-soft); }
+.top nav a:hover { color: var(--ink); }
+.top nav .btn { padding: 10px 18px; font-size: 15px; color: var(--navy); }
+.menu-btn { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--ink); }
+
+/* Hero */
+.hero { padding: 64px 0 88px; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(38px, 5.4vw, 60px); font-weight: 800; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), #e8590c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .copy { display: grid; gap: 24px; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.checks { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; padding: 0; margin: 0; color: var(--ink-soft); font-size: 15px; font-weight: 600; }
+.checks li::before { content: "✓"; color: var(--ok); font-weight: 800; margin-right: 8px; }
+
+/* Teléfono */
+.phone-stage { position: relative; display: grid; place-items: center; }
+.phone-stage::before { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, var(--accent-bg), transparent 70%); }
+.phone { position: relative; width: 300px; background: var(--navy); border-radius: 40px; padding: 12px; box-shadow: 0 30px 60px rgba(20,33,61,.3); }
+.screen { background: #f6f7fb; border-radius: 30px; overflow: hidden; }
+.scr-head { background: #fff; padding: 14px 14px 10px; display: flex; justify-content: space-between; align-items: center; }
+.scr-head b { font-size: 13px; line-height: 1.2; }
+.scr-head small { display: block; color: var(--ink-soft); font-size: 11px; font-weight: 500; }
+.cart { background: var(--blue); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 700; display: flex; gap: 6px; align-items: center; }
+.cart i { font-style: normal; background: var(--ok); border-radius: 50%; width: 18px; height: 18px; display: grid; place-items: center; font-size: 11px; }
+.chips { display: flex; gap: 6px; padding: 10px 14px; overflow: hidden; }
+.chips span { font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 999px; background: #fff; border: 1px solid #e3e6ef; white-space: nowrap; }
+.chips span.on { background: var(--blue); color: #fff; border-color: var(--blue); }
+.dish { background: #fff; margin: 0 12px 10px; border-radius: 14px; padding: 10px; display: grid; grid-template-columns: 64px 1fr; gap: 10px; }
+.dish .ph { width: 64px; height: 64px; border-radius: 10px; display: grid; place-items: center; font-size: 32px; position: relative; }
+.dish .ph em { position: absolute; top: 3px; left: 3px; font-style: normal; font-size: 8px; font-weight: 800; background: var(--blue); color: #fff; padding: 1px 5px; border-radius: 6px; }
+.dish b { font-size: 12px; display: flex; justify-content: space-between; }
+.dish p { font-size: 10px; color: var(--ink-soft); line-height: 1.35; margin: 2px 0 6px; }
+.dish .add { display: inline-block; background: var(--navy); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+.toast { position: absolute; right: -36px; bottom: 70px; background: #fff; border-radius: 14px; padding: 10px 14px; box-shadow: var(--shadow); font-size: 13px; font-weight: 700; display: flex; gap: 10px; align-items: center; border: 1px solid var(--line); }
+.toast .dot { width: 32px; height: 32px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; color: #fff; }
+.toast small { display: block; color: var(--ink-soft); font-weight: 500; font-size: 11px; }
+
+/* Ideal para */
+.biz { background: var(--navy); color: #e6ebf5; padding: 26px 0; }
+.biz .wrap { display: flex; flex-wrap: wrap; gap: 12px 36px; justify-content: center; font-weight: 700; }
+.biz span::before { content: "●"; color: var(--accent); margin-right: 10px; font-size: 10px; vertical-align: middle; }
+
+/* Pasos */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: grid; gap: 10px; align-content: start; box-shadow: var(--shadow); }
+.step::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--navy); }
+.step p { color: var(--ink-soft); font-size: 15px; }
+
+/* Funciones */
+#funciones { background: var(--bg-alt); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 32px; display: grid; gap: 18px; align-content: start; box-shadow: var(--shadow); }
+.panel .tag { justify-self: start; font-size: 12px; font-weight: 800; padding: 5px 12px; border-radius: 999px; background: var(--accent-bg); color: var(--accent-ink); }
+.panel.dark { background: var(--navy); color: #fff; border-color: var(--navy); }
+.panel.dark .tag { background: rgba(251,176,59,.18); color: var(--accent-2); }
+.panel.dark li { color: #c9d3e6; }
+.panel.dark li b { color: #fff; }
+.panel ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.panel li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; color: var(--ink-soft); font-size: 16px; }
+.panel li::before { content: "✓"; color: var(--ok); font-weight: 800; }
+.panel.dark li::before { color: var(--accent-2); }
+.panel li b { color: var(--ink); }
+
+/* Modalidades */
+.modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mode { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; gap: 12px; box-shadow: var(--shadow); }
+.mode .ico { font-size: 34px; line-height: 1; }
+.mode p { color: var(--ink-soft); font-size: 15px; }
+
+/* Video */
+#video { background: var(--navy); color: #fff; }
+#video .eyebrow { color: var(--accent-2); }
+#video .lead { color: #c9d3e6; }
+.video-grid { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: center; }
+.video-grid .f-copy { display: grid; gap: 18px; }
+.video-frame { background: #0b1830; border-radius: 30px; padding: 10px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+.video-frame video { width: 100%; border-radius: 22px; aspect-ratio: 9 / 16; object-fit: cover; background: #000; }
+
+/* WhatsApp ejemplo */
+.wa-msg { background: #dcf8c6; color: #111; border-radius: 14px 14px 4px 14px; padding: 14px 16px; font-size: 14px; line-height: 1.5; max-width: 360px; box-shadow: var(--shadow); }
+.wa-msg small { display: block; text-align: right; color: #667; font-size: 11px; margin-top: 6px; }
+.wa-wrap { background: #ece5dd; border-radius: 22px; padding: 28px; display: grid; justify-items: end; }
+
+/* Preguntas */
+.faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 0 22px; }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 700; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--accent-ink); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding-bottom: 20px; color: var(--ink-soft); }
+
+/* Contacto */
+#contacto { background: var(--bg-alt); }
+.contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
+.contact .f-copy { display: grid; gap: 18px; }
+.contact .f-copy .btn { justify-self: start; }
+form.lead-form { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; display: grid; gap: 16px; box-shadow: var(--shadow); }
+.lead-form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.lead-form label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
+.lead-form input, .lead-form select, .lead-form textarea { font: inherit; font-size: 16px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
+.lead-form .fine { font-size: 13px; color: var(--ink-soft); }
+
+footer { padding: 40px 0; border-top: 1px solid var(--line); }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--ink-soft); font-size: 14px; }
+footer img { height: 36px; width: auto; }
+footer a { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 960px) {
+  .hero .wrap, .split, .contact, .video-grid { grid-template-columns: 1fr; gap: 40px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .modes { grid-template-columns: 1fr; }
+  .video-frame { max-width: 340px; margin: 0 auto; }
+  .toast { right: 0; }
+}
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  section { padding: 64px 0; }
+  .wrap { padding: 0 16px; }
+  .asei-bar span { display: none; }
+  .top nav { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 12px 16px 20px; gap: 4px; }
+  .top nav.open { display: flex; }
+  .top nav a { padding: 10px 0; font-size: 17px; }
+  .menu-btn { display: block; }
+  .top .logo img { height: 38px; }
+  .steps, .lead-form .two { grid-template-columns: 1fr; }
+  .hero { padding: 40px 0 64px; }
+  .phone { width: 270px; }
+  .phone-stage::before { width: 300px; height: 300px; }
+  .toast { bottom: -18px; right: 50%; transform: translateX(50%); white-space: nowrap; }
+  .panel { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="asei-bar">
+  <div class="wrap">
+    <a href="index.html#soluciones">← Volver a ASEI Consulting</a>
+    <span>Una solución de ASEI Consulting</span>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="BocattoSoft, inicio"><img src="logo_bocatto_soft.webp" alt="BocattoSoft · Menús digitales para restaurantes"></a>
+    <nav id="nav">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#funciones">Funciones</a>
+      <a href="#video">Video</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#contacto" class="btn btn-primary">Pide tu demo</a>
+    </nav>
+    <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" onclick="var n=document.getElementById('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="copy">
+      <span class="eyebrow">Menú digital para restaurantes</span>
+      <h1>Tu menú con fotos, <em>y los pedidos directo a tu WhatsApp.</em></h1>
+      <p class="lead">Con BocattoSoft tus clientes ven el menú en su celular, arman su pedido con extras y opciones, y te lo envían ordenado y con total. Tú lo atiendes desde un panel sencillo.</p>
+      <div class="ctas">
+        <a href="#contacto" class="btn btn-primary">Quiero mi menú digital</a>
+        <a href="#video" class="btn btn-ghost">Ver cómo funciona</a>
+      </div>
+      <ul class="checks">
+        <li>Sin descargar apps</li>
+        <li>Mostrador, mesas y domicilio</li>
+        <li>Panel de pedidos</li>
+      </ul>
+    </div>
+
+    <div class="phone-stage" aria-hidden="true">
+      <div class="phone">
+        <div class="screen">
+          <div class="scr-head"><b>Antojitos TaconTento<small>Mostrador</small></b><span class="cart">🛒 <i>2</i></span></div>
+          <div class="chips"><span>Desayunos</span><span>☕ Bebidas</span><span class="on">🍔 Comida</span><span>🍰 Postres</span></div>
+          <div class="dish"><div class="ph" style="background:#fdebd3"><em>POPULAR</em>🍔</div><div><b>Hamburguesa Clásica <span>$130</span></b><p>180 g angus, cheddar, lechuga, jitomate, papas.</p><span class="add">Agregar</span></div></div>
+          <div class="dish"><div class="ph" style="background:#fde2d8"><em>POPULAR</em>🍗</div><div><b>Alitas BBQ <span>$110</span></b><p>Con papas. Elige tu salsa: BBQ o tamarindo.</p><span class="add">Agregar</span></div></div>
+          <div class="dish"><div class="ph" style="background:#fff3c4">🌯</div><div><b>Enchiladas <span>$120</span></b><p>Tres enchiladas de pollo, crema y queso gratinado.</p><span class="add">Agregar</span></div></div>
+          <div class="dish" style="margin-bottom:14px"><div class="ph" style="background:#e9e2f7">☕</div><div><b>Cappuccino <span>$55</span></b><p>Extra shot o leche deslactosada.</p><span class="add">Agregar</span></div></div>
+        </div>
+      </div>
+      <div class="toast"><span class="dot">✓</span><span>Llegó 1 pedido<small>Mostrador · Ana López · $290</small></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="biz">
+  <div class="wrap">
+    <span>Restaurantes</span><span>Dark kitchens</span><span>Snacks y antojitos</span><span>Cafeterías</span><span>Negocios pequeños</span>
+  </div>
+</div>
+
+<!-- Cómo funciona -->
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Del celular de tu cliente a tu cocina en cuatro pasos.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Abre el menú</h3><p>Desde un QR o un enlace. Ve tus categorías, fotos, precios y los platillos más populares.</p></div>
+      <div class="step"><h3>Arma su pedido</h3><p>Elige extras, opciones obligatorias como la salsa, cantidad e instrucciones especiales.</p></div>
+      <div class="step"><h3>Lo envía por WhatsApp</h3><p>El pedido se registra con folio y se manda a tu WhatsApp con el detalle y el total.</p></div>
+      <div class="step"><h3>Tú lo atiendes</h3><p>Te llega el aviso a tu panel, lo marcas como listo y lo cobras.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Funciones -->
+<section id="funciones">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Funciones</span>
+      <h2>Lo que ve tu cliente y lo que ves tú.</h2>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <span class="tag">Para tu cliente · el menú</span>
+        <h3>Un menú que antoja y no se equivoca.</h3>
+        <ul>
+          <li><span><b>Fotografías</b> de cada platillo, descripción y precio.</span></li>
+          <li><span><b>Categorías</b> como desayunos, comida, bebidas y postres, y etiqueta de <b>populares</b>.</span></li>
+          <li><span><b>Extras con costo</b> (extra queso +$15, tamaño grande +$40) y opciones sin costo (sin cebolla).</span></li>
+          <li><span><b>Opciones obligatorias</b>: no deja agregar el platillo hasta elegir, por ejemplo, la salsa.</span></li>
+          <li><span><b>Instrucciones especiales</b> por platillo y carrito con subtotal y total.</span></li>
+        </ul>
+      </article>
+      <article class="panel dark">
+        <span class="tag">Para tu negocio · el panel</span>
+        <h3>Todos tus pedidos en un solo lugar.</h3>
+        <ul>
+          <li><span><b>Aviso de pedido nuevo</b> en cuanto llega.</span></li>
+          <li><span><b>Estado del pedido</b>, de nuevo a listo, con folio, hora y cliente.</span></li>
+          <li><span><b>Cobro</b> del pedido desde el panel.</span></li>
+          <li><span><b>Inventario</b> para controlar lo que vendes.</span></li>
+          <li><span><b>Corte y resumen</b> del día para cuadrar tus ventas.</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Modalidades -->
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Modalidades</span>
+      <h2>Un mismo menú para cada forma de vender.</h2>
+    </div>
+    <div class="modes">
+      <article class="mode"><span class="ico">🏪</span><h3>Mostrador</h3><p>El cliente pide, deja su nombre y recoge en barra cuando lo llamen. Paga en caja.</p></article>
+      <article class="mode"><span class="ico">🍽️</span><h3>Mesas</h3><p>Desde la mesa, el comensal revisa el menú con fotos y hace su pedido sin esperar.</p></article>
+      <article class="mode"><span class="ico">🛵</span><h3>Domicilio</h3><p>Pedidos para entregar, con los datos del cliente directo en tu WhatsApp.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- Video -->
+<section id="video">
+  <div class="wrap video-grid">
+    <div class="f-copy">
+      <span class="eyebrow">Míralo en acción</span>
+      <h2>Así se ve un pedido de principio a fin.</h2>
+      <p class="lead">El cliente arma su pedido, lo envía por WhatsApp y el negocio lo recibe en su panel para prepararlo y cobrarlo.</p>
+      <div class="wa-wrap" aria-label="Ejemplo de mensaje de pedido">
+        <div class="wa-msg">
+          <b>PEDIDO MOSTRADOR</b> · Antojitos TaconTento<br>
+          <b>Folio:</b> B-261018-Z23Y · <b>Cliente:</b> Ana López<br>
+          Recoge en barra · 12:15 p. m.<br>
+          1x Hamburguesa Clásica (sin cebolla, tamaño grande +$40) · $170<br>
+          1x Enchiladas (salsa roja) · $120<br>
+          <b>TOTAL: $290</b>
+          <small>Pedido desde BocattoSoft ✓✓</small>
+        </div>
+      </div>
+    </div>
+    <div class="video-frame">
+      <video src="video_bocatto.mp4" controls playsinline preload="metadata"></video>
+    </div>
+  </div>
+</section>
+
+<!-- Preguntas -->
+<section id="preguntas">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que más nos preguntan.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>¿Mis clientes tienen que descargar una app?</summary>
+        <p>No. El menú se abre en el navegador del celular desde un código QR o un enlace que puedes compartir en tus redes.</p>
+      </details>
+      <details>
+        <summary>¿Cómo me llegan los pedidos?</summary>
+        <p>Cada pedido se registra con folio y el cliente lo envía a tu WhatsApp con todo el detalle y el total. Además aparece en tu panel con un aviso de pedido nuevo.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se cobra?</summary>
+        <p>El pago se hace en tu negocio, en caja o al entregar. Desde el panel registras el cobro de cada pedido.</p>
+      </details>
+      <details>
+        <summary>¿Puedo cambiar precios o marcar productos?</summary>
+        <p>El menú se arma con tus platillos, fotos, precios, extras y opciones. En la demo te mostramos cómo se actualiza y el alcance de la versión vigente.</p>
+      </details>
+      <details>
+        <summary>¿Para qué negocios es?</summary>
+        <p>Está pensado para restaurantes, dark kitchens, snacks, cafeterías y negocios pequeños que quieren vender por WhatsApp de forma ordenada.</p>
+      </details>
+      <details>
+        <summary>¿Y si mi restaurante necesita algo más completo?</summary>
+        <p>Si manejas mesas, comandas a cocina, inventario con recetas y varias sucursales, conoce <a href="novapos.html">NovaPOS Restaurant</a>, nuestro punto de venta completo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto">
+  <div class="wrap contact">
+    <div class="f-copy">
+      <span class="eyebrow">Contacto</span>
+      <h2>Ten tu menú digital listo.</h2>
+      <p class="lead">Cuéntanos de tu negocio y te mostramos BocattoSoft con un menú como el tuyo.</p>
+      <a class="btn btn-wa" id="wa" href="https://wa.me/525539748069" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+    </div>
+    <form class="lead-form" id="leadForm">
+      <div class="two">
+        <label>Nombre<input name="nombre" required autocomplete="name"></label>
+        <label>Teléfono<input name="telefono" type="tel" required autocomplete="tel"></label>
+      </div>
+      <div class="two">
+        <label>Negocio<input name="negocio" required autocomplete="organization"></label>
+        <label>Tipo de negocio
+          <select name="tipo">
+            <option>Restaurante</option><option>Dark kitchen</option><option>Snacks y antojitos</option><option>Cafetería</option><option>Otro</option>
+          </select>
+        </label>
+      </div>
+      <label>¿Cómo vendes?
+        <select name="modalidad">
+          <option>Mostrador</option><option>Mesas</option><option>Domicilio</option><option>Varias de las anteriores</option>
+        </select>
+      </label>
+      <label>Comentarios<textarea name="comentarios" rows="3" placeholder="¿Cuántos platillos tienes? ¿Qué te gustaría resolver?"></textarea></label>
+      <button class="btn btn-navy" type="submit">Enviar por WhatsApp</button>
+      <p class="fine">Al enviar se abre WhatsApp con tus datos para que nos los mandes. No guardamos información en un servidor.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="logo_bocatto_soft.webp" alt="BocattoSoft">
+    <span>© <span id="year">2026</span> BocattoSoft · Una solución de <a href="index.html">ASEI Consulting</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('#nav a').forEach(function (a) {
+    a.addEventListener('click', function () { document.getElementById('nav').classList.remove('open'); });
+  });
+  document.getElementById('leadForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(e.target);
+    var texto = 'Hola, quiero una demo de BocattoSoft (menú digital).\n' +
+      'Nombre: ' + d.get('nombre') + '\n' +
+      'Teléfono: ' + d.get('telefono') + '\n' +
+      'Negocio: ' + d.get('negocio') + ' (' + d.get('tipo') + ')\n' +
+      'Vendo por: ' + d.get('modalidad') +
+      (d.get('comentarios') ? '\nComentarios: ' + d.get('comentarios') : '');
+    var base = document.getElementById('wa').href.split('?')[0];
+    window.open(base + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  });
+</script>
+</body>
+</html>
