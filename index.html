@@ -8,7 +8,11 @@
 <meta name="theme-color" content="#0b1626">
 <meta property="og:title" content="ASEI Consulting · Software &amp; Support Solutions">
 <meta property="og:description" content="Soluciones de software y soporte para restaurantes y negocios: NovaPOS Restaurant, BocattoSoft y EfacproWEB.">
-<meta property="og:image" content="assets/img/asei-logo.png">
+<meta property="og:image" content="https://aseiconsulting.github.io/page/assets/img/asei-logo.png">
+<meta property="og:url" content="https://aseiconsulting.github.io/page/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<link rel="canonical" href="https://aseiconsulting.github.io/page/">
 <meta name="google-site-verification" content="Ora2nHw2LonFVOQl0TD5UsiM161AynNG5OqxzYAiJio" />
 <link rel="icon" type="image/png" href="assets/img/asei-favicon.png">
 <link rel="apple-touch-icon" href="assets/img/asei-icon-180.png">
@@ -18,7 +22,36 @@
 <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
 <link href="assets/css/asei.css" rel="stylesheet">
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://aseiconsulting.github.io/page/#negocio",
+  "name": "ASEI Consulting",
+  "alternateName": "ASEI Consulting · Software & Support Solutions",
+  "description": "Soluciones de software y soporte para negocios: NovaPOS Restaurant, BocattoSoft y EfacproWEB.",
+  "url": "https://aseiconsulting.github.io/page/",
+  "logo": "https://aseiconsulting.github.io/page/assets/img/asei-logo.png",
+  "image": "https://aseiconsulting.github.io/page/assets/img/asei-logo.png",
+  "telephone": "+52 55 3974 8069",
+  "email": "asei_servicios@yahoo.com.mx",
+  "founder": { "@type": "Person", "name": "Asei Consulting Software and Support Solutions" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Narcisos M22-21 C37, Col. Héroes Coacalco",
+    "addressLocality": "Coacalco de Berriozábal",
+    "addressRegion": "Estado de México",
+    "postalCode": "55712",
+    "addressCountry": "MX"
+  },
+  "areaServed": { "@type": "Country", "name": "México" },
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "NovaPOS Restaurant", "applicationCategory": "BusinessApplication", "url": "https://aseiconsulting.github.io/page/novapos.html" } },
+    { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "BocattoSoft", "applicationCategory": "BusinessApplication", "url": "https://aseiconsulting.github.io/page/bocattosoft.html" } },
+    { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "EfacproWEB", "applicationCategory": "BusinessApplication" } }
+  ]
+}
+</script>
 </head>
 <body data-brand="asei" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="90" tabindex="0">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -251,9 +284,18 @@
             <span><small>WhatsApp</small><strong>55 3974 8069</strong></span>
             <i class="bi bi-box-arrow-up-right ms-auto text-muted-2"></i>
           </a>
+          <a class="contact-item" href="tel:+525539748069">
+            <span class="icon-tile"><i class="bi bi-telephone"></i></span>
+            <span><small>Teléfono</small><strong>55 3974 8069</strong></span>
+          </a>
           <a class="contact-item" href="mailto:asei_servicios@yahoo.com.mx">
             <span class="icon-tile"><i class="bi bi-envelope"></i></span>
             <span><small>Correo de contacto</small><strong>asei_servicios@yahoo.com.mx</strong></span>
+          </a>
+          <a class="contact-item" href="https://www.google.com/maps/search/?api=1&amp;query=Narcisos+H%C3%A9roes+Coacalco+55712+Coacalco+de+Berrioz%C3%A1bal" target="_blank" rel="noopener">
+            <span class="icon-tile"><i class="bi bi-geo-alt"></i></span>
+            <span><small>Dirección</small><strong>Narcisos M22-21 C37, Col. Héroes Coacalco, 55712 Coacalco de Berriozábal, Estado de México</strong></span>
+            <i class="bi bi-box-arrow-up-right ms-auto text-muted-2"></i>
           </a>
         </div>
       </div>
@@ -300,7 +342,7 @@
             </div>
             <div class="col-12">
               <p class="form-status mb-1" role="status" aria-live="polite"></p>
-              <p class="form-hint mb-0"><i class="bi bi-shield-check me-1"></i>No guardamos tu información en ningún servidor: se abre WhatsApp o tu aplicación de correo con el mensaje listo para enviar.</p>
+              <p class="form-hint mb-0"><i class="bi bi-shield-check me-1"></i>No guardamos tu información en ningún servidor: se abre WhatsApp o tu aplicación de correo con el mensaje listo para enviar. Consulta nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
             </div>
           </div>
         </form>
@@ -330,12 +372,14 @@
         <h6>Contacto</h6>
         <ul>
           <li><a href="https://wa.me/525539748069" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-2"></i>55 3974 8069</a></li>
+          <li><a href="tel:+525539748069"><i class="bi bi-telephone me-2"></i>55 3974 8069</a></li>
           <li><a href="mailto:asei_servicios@yahoo.com.mx"><i class="bi bi-envelope me-2"></i>asei_servicios@yahoo.com.mx</a></li>
+          <li class="d-flex"><i class="bi bi-geo-alt me-2"></i><address class="mb-0">Narcisos M22-21 C37, Col. Héroes Coacalco, 55712 Coacalco de Berriozábal, Edo. de México</address></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom py-4 d-flex flex-column flex-sm-row justify-content-between gap-2">
-      <span>© <span data-year>2026</span> ASEI Consulting. Todos los derechos reservados.</span>
+      <span>© <span data-year>2026</span> ASEI Consulting. Todos los derechos reservados. · <a href="aviso-de-privacidad.html">Aviso de privacidad</a></span>
       <a href="#inicio">Volver arriba <i class="bi bi-arrow-up"></i></a>
     </div>
   </div>
